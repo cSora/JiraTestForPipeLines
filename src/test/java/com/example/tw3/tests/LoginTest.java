@@ -34,9 +34,9 @@ public class LoginTest {
     @ParameterizedTest (name = "Wrong password: {0}")
     @ValueSource (strings = {"", "wrongPassword"})
     public void testWrongPassword(String password){
-LoginLogOut.logInWithWrongPassword(password);
-Assertions.assertTrue(loginMethods.isErrorMessageDisplayed());
-Assertions.assertTrue(loginMethods.profileIsNotVisible());
-LoginLogOut.loginPrimary();
+        LoginLogOut.logInWithWrongPassword(password);
+        Assertions.assertTrue(loginMethods.isErrorMessageDisplayed());
+        Assertions.assertTrue(loginMethods.profileIsNotVisible());
+        LoginLogOut.loginPrimary();
     }
 }

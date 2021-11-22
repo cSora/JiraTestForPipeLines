@@ -1,13 +1,13 @@
 package com.example.tw3.tests;
 
 import com.example.tw3.utility.BrowseProjectUtility;
-import com.example.tw3.utility.Login;
+import com.example.tw3.utility.LoginLogOut;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowseProjectTest {
 
@@ -15,7 +15,12 @@ public class BrowseProjectTest {
 
     @BeforeAll
     public static void login(){
-        Login.loginPrimary();
+        LoginLogOut.loginPrimary();
+    }
+
+    @AfterAll
+    static void quitDriver(){
+        LoginLogOut.closeDriver();
     }
 
     @Test

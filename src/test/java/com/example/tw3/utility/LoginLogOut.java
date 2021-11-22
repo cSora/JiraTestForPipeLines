@@ -1,11 +1,12 @@
 package com.example.tw3.utility;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.LoginPage;
 import com.example.tw3.pages.SecondaryLoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public interface Login {
+public interface LoginLogOut {
     LoginPage loginPage = new LoginPage();
     SecondaryLoginPage secondaryLoginPage = new SecondaryLoginPage();
 
@@ -28,5 +29,9 @@ public interface Login {
         loginPage.getUsernameField().sendKeys(System.getenv("username"));
         loginPage.getPasswordField().sendKeys(password);
         loginPage.getLoginForm().submit();
+    }
+
+    static void closeDriver(){
+        WebDriverRunner.getWebDriver().close();
     }
 }

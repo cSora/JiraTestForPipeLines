@@ -22,4 +22,11 @@ public interface Login {
         secondaryLoginPage.getPasswordField().sendKeys(System.getenv("password"));
         secondaryLoginPage.getLoginForm().submit();
     }
+
+    static void logInWithWrongPassword(String password) {
+        open(loginPage.url);
+        loginPage.getUsernameField().sendKeys(System.getenv("username"));
+        loginPage.getPasswordField().sendKeys(password);
+        loginPage.getLoginForm().submit();
+    }
 }

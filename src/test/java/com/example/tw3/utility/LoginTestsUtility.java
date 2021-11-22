@@ -46,7 +46,4 @@ public class LoginTestsUtility {
         return loginPage.getMustLogInMsg().isDisplayed();
     }
 
-    public void closeDriver(){
-        WebDriverRunner.getWebDriver().close();
-    }
 }

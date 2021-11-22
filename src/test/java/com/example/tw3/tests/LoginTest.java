@@ -1,6 +1,6 @@
 package com.example.tw3.tests;
 
-import com.example.tw3.utility.Login;
+import com.example.tw3.utility.LoginLogOut;
 import com.example.tw3.utility.LoginTestsUtility;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -8,24 +8,24 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class LoginTest implements Login {
+public class LoginTest {
     LoginTestsUtility loginMethods = new LoginTestsUtility();
 
     @AfterEach
     public void closeDriver(){
-        loginMethods.closeDriver();
+        LoginLogOut.closeDriver();
     }
 
     @Test
     public void login(){
-        Login.loginPrimary();
+        LoginLogOut.loginPrimary();
         Assertions.assertTrue(loginMethods.isProfileButtonVisible());
         loginMethods.navigateToUserProfile();
         Assertions.assertTrue(loginMethods.isUserNameSame());
     }
     @Test
     public void secondaryLogin(){
-        Login.loginSecondary();
+        LoginLogOut.loginSecondary();
         Assertions.assertTrue(loginMethods.isProfileButtonVisible());
         loginMethods.navigateToUserProfile();
         Assertions.assertTrue(loginMethods.isUserNameSame());
@@ -34,9 +34,9 @@ public class LoginTest implements Login {
     @ParameterizedTest (name = "Wrong password: {0}")
     @ValueSource (strings = {"", "wrongPassword"})
     public void testWrongPassword(String password){
-Login.logInWithWrongPassword(password);
+LoginLogOut.logInWithWrongPassword(password);
 Assertions.assertTrue(loginMethods.isErrorMessageDisplayed());
 Assertions.assertTrue(loginMethods.profileIsNotVisible());
-Login.loginPrimary();
+LoginLogOut.loginPrimary();
     }
 }

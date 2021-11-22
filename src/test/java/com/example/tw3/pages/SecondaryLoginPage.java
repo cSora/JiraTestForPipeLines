@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class SecondaryLoginPage {
-    public final String url = "https://jira-auto.codecool.metastage.net/login.jsp?os_destination=%2Fsecure%2FMyJiraHome.jspa";
+    public final String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     SelenideElement usernameField = $x("//input[@id='login-form-username']");
     SelenideElement passwordField = $x("//input[@id='login-form-password']");
     SelenideElement loginForm = $x("//form[@id='loginform']");

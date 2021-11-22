@@ -10,6 +10,8 @@ public class CreateIssueScreen {
     private SelenideElement issueTypeField = $x("//input[@id='issuetype-field']");
     private SelenideElement summaryField = $x("//input[@id='summary']");
 
+    private SelenideElement issueLink = $x("//a[@class='issue-created-key issue-link']");
+
     public SelenideElement getScreen() {
         return screen;
     }
@@ -28,5 +30,9 @@ public class CreateIssueScreen {
 
     public SelenideElement getSummaryField() {
         return summaryField;
+    }
+
+    public SelenideElement getIssueLink() {
+        return issueLink;
     }
 }

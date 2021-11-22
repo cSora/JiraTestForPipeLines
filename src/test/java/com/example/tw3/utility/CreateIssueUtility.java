@@ -48,4 +48,11 @@ public class CreateIssueUtility {
         if(!createIssueScreen.getIssueTypeField().getValue().equals(issueType)) { return false; }
         return createIssueScreen.getSummaryField().getValue().equals(summary);
     }
+
+    public void createIssueAndOpenPage() {
+        createIssueScreen.getCreateBtn().click();
+        wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
+        wait.until(ExpectedConditions.visibilityOf(createIssueScreen.getIssueLink()));
+        createIssueScreen.getIssueLink().click();
+    }
 }

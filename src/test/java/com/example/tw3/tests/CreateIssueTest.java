@@ -24,5 +24,7 @@ public class CreateIssueTest {
         String summary = "test summary " + id;
         createIssueMethods.fillForm(project, issueType, summary);
         Assertions.assertTrue(createIssueMethods.validateInForm(project, issueType, summary));
+        createIssueMethods.createIssueAndOpenPage();
+        // TODO: validate on issue page
     }
 }

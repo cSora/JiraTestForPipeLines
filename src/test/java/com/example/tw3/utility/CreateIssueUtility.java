@@ -13,12 +13,14 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Objects;
+
 import static com.codeborne.selenide.Selenide.open;
 
 public class CreateIssueUtility {
-    private DashBoardPage dashBoardPage = new DashBoardPage();
-    private CreateIssueScreen createIssueScreen = new CreateIssueScreen();
-    private IssuePage issuePage = new IssuePage();
+    private final DashBoardPage dashBoardPage = new DashBoardPage();
+    private final CreateIssueScreen createIssueScreen = new CreateIssueScreen();
+    private final IssuePage issuePage = new IssuePage();
 
     private WebDriverWait wait;
     private String issueUrl;
@@ -54,9 +56,9 @@ public class CreateIssueUtility {
     }
 
     public boolean validateInForm(Project project, IssueType issueType, String summary) {
-        if(!createIssueScreen.getProjectField().getValue().equals(project.getFullNameWithKey())) { return false; }
-        if(!createIssueScreen.getIssueTypeField().getValue().equals(issueType.name())) { return false; }
-        return createIssueScreen.getSummaryField().getValue().equals(summary);
+        if(!Objects.equals(createIssueScreen.getProjectField().getValue(), project.getFullNameWithKey())) { return false; }
+        if(!Objects.equals(createIssueScreen.getIssueTypeField().getValue(), issueType.name())) { return false; }
+        return Objects.equals(createIssueScreen.getSummaryField().getValue(), summary);
     }
 
     public void createIssueAndOpenPage() {
@@ -68,7 +70,7 @@ public class CreateIssueUtility {
         issueUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
     }
 
-    public boolean validateIssuePage(Project project, IssueType type, String summary) { // TODO: debug
+    public boolean validateIssuePage(Project project, IssueType type, String summary) {
         String projectResult = issuePage.getProjectNameValue().getText();
         String typeResult = issuePage.getTypeValue().getText();
         String summaryResult = issuePage.getSummaryValue().getText();

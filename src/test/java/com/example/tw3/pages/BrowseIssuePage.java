@@ -10,6 +10,7 @@ public class BrowseIssuePage {
     SelenideElement issueSummary = $x("//h1[@id='summary-val']");
     SelenideElement issueKey = $x("//a[@id='key-val']");
     SelenideElement issueError = $x("//div[@class='issue-error']");
+    private SelenideElement editIssueBtn = $x("//a[@id='edit-issue']");
 
 
     public SelenideElement getIssueSummary() {
@@ -25,10 +26,15 @@ public class BrowseIssuePage {
     }
 
     public void setCustomIssueUrl(String issueKey) {
-        this.customIssueUrl = customIssueUrl+issueKey;
+        this.customIssueUrl = customIssueUrl + issueKey;
     }
 
     public SelenideElement getIssueError() {
         return issueError;
+    }
+
+    public SelenideElement getEditIssueBtn() {
+        return editIssueBtn;
+
     }
 }

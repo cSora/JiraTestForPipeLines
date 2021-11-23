@@ -22,7 +22,7 @@ public class BrowseIssueTest {
     }
 
     @ParameterizedTest(name = "Test {0} issue of project: {1}")
-    @CsvFileSource(resources = "/issues_to_browse.csv", numLinesToSkip = 1, delimiter = ';')
+    @CsvFileSource(resources = "/issues_to_check.csv", numLinesToSkip = 1, delimiter = ';')
     public void testCustomIssue(String issueKey, String projectName){
         Assertions.assertTrue(browseIssueUtility.validateValues(issueKey));
     }

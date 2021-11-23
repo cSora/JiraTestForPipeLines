@@ -43,7 +43,7 @@ public class CreateIssueTest {
 
     @ParameterizedTest (name = "Specific issue: {0} project {1} type")
     @CsvFileSource(resources = "/issues.csv", numLinesToSkip = 1, delimiter = ';')
-    public void createSpecificIssues(String projectStr, String typeStr) { // TODO: Jeti big + story should pass!
+    public void createSpecificIssues(String projectStr, String typeStr) { // TODO: Jeti bug + story should pass!
         Project project = Project.valueOf(projectStr);
         IssueType type = IssueType.valueOf(typeStr);
         String summary = "dummy summary content";
@@ -51,5 +51,12 @@ public class CreateIssueTest {
         createIssueMethods.fillForm(project, type, summary);
         Assertions.assertTrue(createIssueMethods.validateInForm(project, type, summary));
         createIssueMethods.closeCreateIssueScreen();
+    }
+
+    @ParameterizedTest (name = "Sub-task for {0} project")
+    @CsvFileSource(resources = "/subtask.csv", numLinesToSkip = 1, delimiter = ';')
+    public void createSubIssueForProject(String project, String issue, String url) {
+        Assertions.assertTrue(createIssueMethods.validateIssuePage(issue, url));
+        Assertions.assertTrue(createIssueMethods.validateSubTaskOptionPresent());
     }
 }

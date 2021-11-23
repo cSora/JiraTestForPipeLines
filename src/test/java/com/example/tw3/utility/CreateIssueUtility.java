@@ -4,7 +4,9 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.DashBoardPage;
 import com.example.tw3.pages.IssuePage;
+import com.example.tw3.pages.dropdowns.IssueType;
 import com.example.tw3.pages.dropdowns.MoreOptionsDropDown;
+import com.example.tw3.pages.dropdowns.Project;
 import com.example.tw3.pages.screens.CreateIssueScreen;
 import com.example.tw3.pages.screens.DeleteIssueScreen;
 import org.openqa.selenium.Keys;
@@ -35,9 +37,9 @@ public class CreateIssueUtility {
         return createIssueScreen.getCreateBtn().isDisplayed();
     }
 
-    public void fillForm(String project, String issueType, String summary) {
-        fillField(createIssueScreen.getProjectField(), project);
-        fillField(createIssueScreen.getIssueTypeField(), issueType);
+    public void fillForm(Project project, IssueType issueType, String summary) {
+        fillField(createIssueScreen.getProjectField(), project.getFullNameWithKey());
+        fillField(createIssueScreen.getIssueTypeField(), issueType.name());
         fillField(createIssueScreen.getSummaryField(), summary);
     }
 
@@ -51,9 +53,9 @@ public class CreateIssueUtility {
         field.sendKeys(Keys.ENTER);
     }
 
-    public boolean validateInForm(String project, String issueType, String summary) {
-        if(!createIssueScreen.getProjectField().getValue().equals(project)) { return false; }
-        if(!createIssueScreen.getIssueTypeField().getValue().equals(issueType)) { return false; }
+    public boolean validateInForm(Project project, IssueType issueType, String summary) {
+        if(!createIssueScreen.getProjectField().getValue().equals(project.getFullNameWithKey())) { return false; }
+        if(!createIssueScreen.getIssueTypeField().getValue().equals(issueType.name())) { return false; }
         return createIssueScreen.getSummaryField().getValue().equals(summary);
     }
 
@@ -66,10 +68,13 @@ public class CreateIssueUtility {
         issueUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
     }
 
-    public boolean validateIssuePage(String project, String type, String summary) { // TODO: debug
-        if (!issuePage.getProjectNameValue().getText().equals(project)) { return false; }
-        if (!issuePage.getTypeValue().getText().equals(type)) { return false; }
-        if (!issuePage.getSummaryValue().getText().equals(summary)) { return false; }
+    public boolean validateIssuePage(Project project, IssueType type, String summary) { // TODO: debug
+        String projectResult = issuePage.getProjectNameValue().getText();
+        String typeResult = issuePage.getTypeValue().getText();
+        String summaryResult = issuePage.getSummaryValue().getText();
+        if (!projectResult.equals(project.getFullName())) { return false; }
+        if (!typeResult.equals(type.name())) { return false; }
+        if (!summaryResult.equals(summary)) { return false; }
         // if (!issuePage.getReporterValue().getText().equals(System.getenv("user"))) { return false; }
         return true;
     }
@@ -88,8 +93,8 @@ public class CreateIssueUtility {
     }
 
     public boolean validateDeleted() {
+        wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
         open(issueUrl);
-        String currentUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
-        return !currentUrl.equals(issueUrl);
+        return issuePage.getCantViewIssueMessage().isDisplayed();
     }
 }

@@ -20,14 +20,14 @@ public class CreateIssueTest {
         Assertions.assertTrue(createIssueMethods.createScreenIsVisible());
 
         UUID id = UUID.randomUUID();
-        String project = Project.MTP.getFullNameWithKey();
-        String issueType = IssueType.Task.name();
+        Project project = Project.MTP;
+        IssueType type = IssueType.Task;
         String summary = "test summary " + id;
 
-        createIssueMethods.fillForm(project, issueType, summary);
-        Assertions.assertTrue(createIssueMethods.validateInForm(project, issueType, summary));
+        createIssueMethods.fillForm(project, type, summary);
+        Assertions.assertTrue(createIssueMethods.validateInForm(project, type, summary));
         createIssueMethods.createIssueAndOpenPage();
-        Assertions.assertTrue(createIssueMethods.validateIssuePage(project, issueType, summary));
+        Assertions.assertTrue(createIssueMethods.validateIssuePage(project, type, summary));
 
         createIssueMethods.deleteIssue();
         Assertions.assertTrue(createIssueMethods.validateDeleted());

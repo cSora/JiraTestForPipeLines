@@ -11,6 +11,7 @@ public class IssuePage {
     private SelenideElement typeValue = $x("//span[@id='type-val']");
     private SelenideElement reporterValue = $x("//span[@id='issue_summary_reporter_automation12']");
     private SelenideElement moreBtn = $x("//a[@id='opsbar-operations_more']");
+    private SelenideElement cantViewIssueMessage = $x("//span[@class='error-image error-image-canNotBeViewed']");
 
     public SelenideElement getDetailsSection() {
         return detailsSection;
@@ -35,5 +36,9 @@ public class IssuePage {
 
     public SelenideElement getMoreBtn() {
         return moreBtn;
+    }
+
+    public SelenideElement getCantViewIssueMessage() {
+        return cantViewIssueMessage;
     }
 }

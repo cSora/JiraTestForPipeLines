@@ -31,7 +31,7 @@ public interface LoginLogOut {
         loginPage.getUsernameField().sendKeys(System.getenv("username"));
         loginPage.getPasswordField().sendKeys(Objects.requireNonNullElse(password, ""));
         // maybe white space isn't tested yet but it send null
-        // loginPage.getLoginForm().submit();
+        loginPage.getLoginForm().submit();
     }
 
     static void closeDriver(){

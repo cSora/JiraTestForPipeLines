@@ -1,5 +1,6 @@
 package com.example.tw3.tests;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.dropdowns.IssueType;
 import com.example.tw3.pages.dropdowns.Project;
 import com.example.tw3.utility.CreateIssueUtility;
@@ -20,11 +21,15 @@ public class CreateIssueTest {
 
         UUID id = UUID.randomUUID();
         String project = Project.MTP.getFullNameWithKey();
-        String issueType = IssueType.TASK.name();
+        String issueType = IssueType.Task.name();
         String summary = "test summary " + id;
+
         createIssueMethods.fillForm(project, issueType, summary);
         Assertions.assertTrue(createIssueMethods.validateInForm(project, issueType, summary));
         createIssueMethods.createIssueAndOpenPage();
-        // TODO: validate on issue page
+        Assertions.assertTrue(createIssueMethods.validateIssuePage(project, issueType, summary));
+
+        createIssueMethods.deleteIssue();
+        Assertions.assertTrue(createIssueMethods.validateDeleted());
     }
 }

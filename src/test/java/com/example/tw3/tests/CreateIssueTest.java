@@ -23,6 +23,11 @@ public class CreateIssueTest {
         createIssueMethods.openScreen();
     }
 
+    @AfterAll
+    public static void tearDown(){
+        LoginLogOut.closeDriver();
+    }
+
     @Test
     public void createIssue() {
         Assertions.assertTrue(createIssueMethods.createScreenIsVisible());

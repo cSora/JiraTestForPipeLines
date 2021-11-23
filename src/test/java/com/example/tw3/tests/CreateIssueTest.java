@@ -1,22 +1,30 @@
 package com.example.tw3.tests;
 
-import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.dropdowns.IssueType;
 import com.example.tw3.pages.dropdowns.Project;
 import com.example.tw3.utility.CreateIssueUtility;
 import com.example.tw3.utility.LoginLogOut;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.util.UUID;
 
 public class CreateIssueTest {
     CreateIssueUtility createIssueMethods = new CreateIssueUtility();
 
+    @BeforeAll
+    public static void openPage() {
+        LoginLogOut.loginPrimary();
+    }
+
+    @BeforeEach
+    public void openScreen() {
+        createIssueMethods.openScreen();
+    }
+
     @Test
     public void createIssue() {
-        LoginLogOut.loginPrimary();
-        createIssueMethods.openScreen();
         Assertions.assertTrue(createIssueMethods.createScreenIsVisible());
 
         UUID id = UUID.randomUUID();
@@ -31,5 +39,24 @@ public class CreateIssueTest {
 
         createIssueMethods.deleteIssue();
         Assertions.assertTrue(createIssueMethods.validateDeleted());
+    }
+
+    @ParameterizedTest (name = "Specific issue: {0} project {1} type")
+    @CsvFileSource(resources = "/issues.csv", numLinesToSkip = 1, delimiter = ';')
+    public void createSpecificIssues(String projectStr, String typeStr) { // TODO: Jeti bug + story should pass!
+        Project project = Project.valueOf(projectStr);
+        IssueType type = IssueType.valueOf(typeStr);
+        String summary = "dummy summary content";
+
+        createIssueMethods.fillForm(project, type, summary);
+        Assertions.assertTrue(createIssueMethods.validateInForm(project, type, summary));
+        createIssueMethods.closeCreateIssueScreen();
+    }
+
+    @ParameterizedTest (name = "Sub-task for {0} project")
+    @CsvFileSource(resources = "/subtask.csv", numLinesToSkip = 1, delimiter = ';')
+    public void createSubIssueForProject(String project, String issue, String url) {
+        Assertions.assertTrue(createIssueMethods.validateIssuePage(issue, url));
+        Assertions.assertTrue(createIssueMethods.validateSubTaskOptionPresent());
     }
 }

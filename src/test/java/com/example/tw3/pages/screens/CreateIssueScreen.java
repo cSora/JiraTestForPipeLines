@@ -9,6 +9,7 @@ public class CreateIssueScreen {
     private SelenideElement projectField = $x("//input[@id='project-field']");
     private SelenideElement issueTypeField = $x("//input[@id='issuetype-field']");
     private SelenideElement summaryField = $x("//input[@id='summary']");
+    private SelenideElement cancelBtn = $x("//button[text()='Cancel']");
 
     private SelenideElement issueLink = $x("//a[@class='issue-created-key issue-link']");
 
@@ -36,8 +37,7 @@ public class CreateIssueScreen {
         return issueLink;
     }
 
-    public SelenideElement getSpecificProjectOption(String value) {
-        SelenideElement option = $x("//label[text()='" + value + "']");
-        return option;
+    public SelenideElement getCancelBtn() {
+        return cancelBtn;
     }
 }

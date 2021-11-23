@@ -45,7 +45,7 @@ public class CreateIssueUtility {
         fillField(createIssueScreen.getSummaryField(), summary);
     }
 
-    private void fillField(SelenideElement field, String value) {
+    public void fillField(SelenideElement field, String value) {
         field.click();
         int textSize = field.text().length();
         for (int i = 0; i < textSize; i++) {
@@ -81,6 +81,12 @@ public class CreateIssueUtility {
         return true;
     }
 
+    public boolean validateIssuePage(String summary, String url) {
+        open(url);
+        String summaryResult = issuePage.getSummaryValue().getText();
+        return !summaryResult.equals(summary);
+    }
+
     public void deleteIssue() {
         issuePage.getMoreBtn().click();
         MoreOptionsDropDown more = new MoreOptionsDropDown();
@@ -98,5 +104,21 @@ public class CreateIssueUtility {
         wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
         open(issueUrl);
         return issuePage.getCantViewIssueMessage().isDisplayed();
+    }
+
+    public void closeCreateIssueScreen() {
+        createIssueScreen.getCancelBtn().click();
+        WebDriverRunner.getWebDriver().switchTo().alert().accept();
+        wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
+        wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
+    }
+
+    public boolean validateSubTaskOptionPresent() {
+        issuePage.getMoreBtn().click();
+        MoreOptionsDropDown more = new MoreOptionsDropDown();
+        while (!(more.getDeleteOption().isDisplayed() || more.getSubTaskOption().isDisplayed())) {
+            more.getMenu().sendKeys(Keys.DOWN);
+        }
+        return more.getSubTaskOption().isDisplayed();
     }
 }

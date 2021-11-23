@@ -6,6 +6,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LoginTest {
@@ -31,9 +34,9 @@ public class LoginTest {
         Assertions.assertTrue(loginMethods.isUserNameSame());
     }
 
-    @ParameterizedTest (name = "Wrong password: {0}")
-    @ValueSource (strings = {"", "wrongPassword"})
-    public void testWrongPassword(String password){
+    @ParameterizedTest (name = "Test for: {1}")
+    @CsvFileSource(resources = "/wrong_passwords.csv", numLinesToSkip = 1, delimiter = ';')
+    public void testWrongPassword(String password, String testName){
         LoginLogOut.logInWithWrongPassword(password);
         Assertions.assertTrue(loginMethods.isErrorMessageDisplayed());
         Assertions.assertTrue(loginMethods.profileIsNotVisible());

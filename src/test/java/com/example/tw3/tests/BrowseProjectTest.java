@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class BrowseProjectTest {
@@ -31,7 +32,7 @@ public class BrowseProjectTest {
     }
 
     @ParameterizedTest(name = "Test browse {0}")
-    @MethodSource("com.example.tw3.utility.BrowseProjectUtility#provideProjectNamesAndKeys")
+    @CsvFileSource(resources = "/projects.csv", numLinesToSkip = 1, delimiter = ';')
     public void test(String projectName, String projectKey){
         browseProjectUtility.setProjectUrl(projectKey);
         Assertions.assertTrue(browseProjectUtility.validateProjectKey(projectKey));

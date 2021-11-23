@@ -32,7 +32,7 @@ public class BrowseProjectTest {
 
     @ParameterizedTest(name = "Test browse {0}")
     @CsvFileSource(resources = "/projects.csv", numLinesToSkip = 1, delimiter = ';')
-    public void test(String projectName, String projectKey){
+    public void browseCustomProjects(String projectName, String projectKey){
         browseProjectUtility.setProjectUrl(projectKey);
         Assertions.assertTrue(browseProjectUtility.validateProjectKey(projectKey));
         Assertions.assertTrue(browseProjectUtility.validateProjectName(projectName));

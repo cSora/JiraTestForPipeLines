@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class EditIssueTest {
     EditIssueUtility editIssueUtility = new EditIssueUtility();
-    BrowseIssueUtility browseIssueUtility = new BrowseIssueUtility();
 
     @BeforeAll
     public static void setUp(){

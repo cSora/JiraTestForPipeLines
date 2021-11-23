@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.MethodSource;
 
 public class BrowseProjectTest {
 
@@ -26,7 +25,7 @@ public class BrowseProjectTest {
 
     @Test
     public void browseProject(){
-        browseProjectUtility.clickMainTestingProject();
+        browseProjectUtility.navigateToMainTestingProjectSummary();
         Assertions.assertTrue(browseProjectUtility.validateProjectKey());
         Assertions.assertTrue(browseProjectUtility.validateProjectName());
     }

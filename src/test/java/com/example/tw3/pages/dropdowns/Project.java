@@ -17,6 +17,6 @@ public enum Project {
     }
 
     public String getFullNameWithKey() {
-        return fullName + "(" + this.name() + ")";
+        return fullName + " (" + this.name() + ")";
     }
 }

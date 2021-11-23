@@ -35,4 +35,9 @@ public class CreateIssueScreen {
     public SelenideElement getIssueLink() {
         return issueLink;
     }
+
+    public SelenideElement getSpecificProjectOption(String value) {
+        SelenideElement option = $x("//label[text()='" + value + "']");
+        return option;
+    }
 }

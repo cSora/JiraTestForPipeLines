@@ -8,7 +8,8 @@ public class BrowseProjectsPage {
     public final String url = "https://jira-auto.codecool.metastage.net/secure/BrowseProjects.jspa";
     String browseUrl;
     SelenideElement mainTestingProjectLink = $x("//a[contains(@original-title, 'Main Testing Project')]");
-    SelenideElement projectTitle = $x("//a[contains(text(), 'Main Testing Project')]");
+    SelenideElement projectTitle;
+    SelenideElement MTPprojectTitle = $x("//a[contains(text(), 'Main Testing Project')]");
     SelenideElement projectKey = $x("//dd[contains(text(), 'MTP')]");
     String projectKeyXpath = "//dd[contains(text(), 'MTP')]";
 
@@ -42,5 +43,9 @@ public class BrowseProjectsPage {
 
     public String getProjectKeyXpath() {
         return projectKeyXpath;
+    }
+
+    public SelenideElement getMTPprojectTitle() {
+        return MTPprojectTitle;
     }
 }

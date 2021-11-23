@@ -5,10 +5,17 @@ import com.example.tw3.pages.DashBoardPage;
 import com.example.tw3.pages.LogoutPage;
 import com.example.tw3.pages.ProfilePage;
 import com.example.tw3.pages.dropdowns.ProfileOptionsDropDown;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.open;
 

@@ -9,7 +9,7 @@ public class IssuePage {
     private SelenideElement summaryValue = $x("//h1[@id='summary-val']");
     private SelenideElement projectNameValue = $x("//a[@id='project-name-val']");
     private SelenideElement typeValue = $x("//span[@id='type-val']");
-    private SelenideElement reporterValue = $x("//span[@id='issue_summary_reporter_automation12']");
+    private SelenideElement reporterValue = $x("//span[@id='issue_summary_reporter_" + System.getenv("username") + "']");
     private SelenideElement moreBtn = $x("//a[@id='opsbar-operations_more']");
     private SelenideElement cantViewIssueMessage = $x("//span[@class='error-image error-image-canNotBeViewed']");
 

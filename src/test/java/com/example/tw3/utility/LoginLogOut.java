@@ -4,6 +4,8 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.LoginPage;
 import com.example.tw3.pages.SecondaryLoginPage;
 
+import java.util.Objects;
+
 import static com.codeborne.selenide.Selenide.open;
 
 public interface LoginLogOut {
@@ -27,8 +29,9 @@ public interface LoginLogOut {
     static void logInWithWrongPassword(String password) {
         open(loginPage.url);
         loginPage.getUsernameField().sendKeys(System.getenv("username"));
-        loginPage.getPasswordField().sendKeys(password);
-        loginPage.getLoginForm().submit();
+        loginPage.getPasswordField().sendKeys(Objects.requireNonNullElse(password, ""));
+        // maybe white space isn't tested yet but it send null
+        // loginPage.getLoginForm().submit();
     }
 
     static void closeDriver(){

@@ -9,6 +9,7 @@ public class BrowseIssuePage {
     String customIssueUrl = "https://jira-auto.codecool.metastage.net/browse/";
     SelenideElement issueSummary = $x("//h1[@id='summary-val']");
     SelenideElement issueKey = $x("//a[@id='key-val']");
+    SelenideElement issueError = $x("//div[@class='issue-error']");
 
 
     public SelenideElement getIssueSummary() {
@@ -17,5 +18,17 @@ public class BrowseIssuePage {
 
     public SelenideElement getIssueKey() {
         return issueKey;
+    }
+
+    public String getCustomIssueUrl() {
+        return customIssueUrl;
+    }
+
+    public void setCustomIssueUrl(String issueKey) {
+        this.customIssueUrl = customIssueUrl+issueKey;
+    }
+
+    public SelenideElement getIssueError() {
+        return issueError;
     }
 }

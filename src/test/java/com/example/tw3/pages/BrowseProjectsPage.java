@@ -10,6 +10,7 @@ public class BrowseProjectsPage {
     SelenideElement mainTestingProjectLink = $x("//a[contains(@original-title, 'Main Testing Project')]");
     SelenideElement projectTitle = $x("//a[contains(text(), 'Main Testing Project')]");
     SelenideElement projectKey = $x("//dd[contains(text(), 'MTP')]");
+    String projectKeyXpath = "//dd[contains(text(), 'MTP')]";
 
     public SelenideElement getMainTestingProjectLink() {
         return mainTestingProjectLink;
@@ -37,5 +38,9 @@ public class BrowseProjectsPage {
 
     public void setBrowseUrl(String key) {
         this.browseUrl = "https://jira-auto.codecool.metastage.net/projects/"+key+"/summary";
+    }
+
+    public String getProjectKeyXpath() {
+        return projectKeyXpath;
     }
 }

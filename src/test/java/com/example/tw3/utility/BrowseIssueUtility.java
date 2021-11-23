@@ -24,7 +24,7 @@ public class BrowseIssueUtility {
                 browseIssuePage.getIssueSummary().text().equals("test summary for browse issue");
     }
 
-    private void browseCustomIssue(String issueKey){
+    public void browseCustomIssue(String issueKey){
         browseIssuePage.setCustomIssueUrl(issueKey);
         open(browseIssuePage.getCustomIssueUrl());
         wait =  new WebDriverWait(WebDriverRunner.getWebDriver(),5);

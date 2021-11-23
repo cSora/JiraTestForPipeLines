@@ -53,13 +53,6 @@ public class BrowseProjectUtility {
         return browseProjectsPage.getProjectKey().isDisplayed() && browseProjectsPage.getProjectTitle().text().equals(projectName);
     }
 
-    public static Stream<Arguments> provideProjectNamesAndKeys() {
-        return Stream.of(
-                Arguments.of("JETI project", "JETI"),
-                Arguments.of("TOUCAN project", "TOUCAN"),
-                Arguments.of("COALA project", "COALA")
-        );
-    }
 
     public void setProjectUrl(String key){
         browseProjectsPage.setBrowseUrl(key);

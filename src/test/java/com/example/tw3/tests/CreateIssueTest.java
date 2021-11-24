@@ -13,23 +13,19 @@ import java.util.UUID;
 public class CreateIssueTest {
     CreateIssueUtility createIssueMethods = new CreateIssueUtility();
 
-    @BeforeAll
-    public static void openPage() {
+    @BeforeEach
+    public  void openPage() {
         LoginLogOut.loginPrimary();
     }
 
-    @BeforeEach
-    public void openScreen() {
-        createIssueMethods.openScreen();
-    }
-
-    @AfterAll
-    public static void tearDown(){
+    @AfterEach
+    public  void tearDown(){
         LoginLogOut.closeDriver();
     }
 
     @Test
     public void createIssue() {
+        createIssueMethods.openScreen();
         Assertions.assertTrue(createIssueMethods.createScreenIsVisible());
 
         UUID id = UUID.randomUUID();

@@ -47,7 +47,7 @@ public class CreateIssueUtility {
 
     public void fillField(SelenideElement field, String value) {
         field.click();
-        int textSize = field.text().length();
+        int textSize = field.getValue().length();
         for (int i = 0; i < textSize; i++) {
             field.sendKeys(Keys.BACK_SPACE);
         }

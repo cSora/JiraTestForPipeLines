@@ -13,6 +13,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -84,7 +85,7 @@ public class CreateIssueUtility {
     public boolean validateIssuePage(String summary, String url) {
         open(url);
         String summaryResult = issuePage.getSummaryValue().getText();
-        return !summaryResult.equals(summary);
+        return summaryResult.equals(summary);
     }
 
     public void deleteIssue() {
@@ -114,11 +115,10 @@ public class CreateIssueUtility {
     }
 
     public boolean validateSubTaskOptionPresent() {
+        wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
         issuePage.getMoreBtn().click();
         MoreOptionsDropDown more = new MoreOptionsDropDown();
-        while (!(more.getDeleteOption().isDisplayed() || more.getSubTaskOption().isDisplayed())) {
-            more.getMenu().sendKeys(Keys.DOWN);
-        }
+        wait.until(ExpectedConditions.visibilityOf(more.getLogWorkOption()));
         return more.getSubTaskOption().isDisplayed();
     }
 
@@ -135,6 +135,5 @@ public class CreateIssueUtility {
         fillField(createIssueScreen.getProjectField(), projectName);
         fillField(createIssueScreen.getIssueTypeField(), issueType);
         createIssueScreen.getCreateIssueHeader().click();
-
     }
 }

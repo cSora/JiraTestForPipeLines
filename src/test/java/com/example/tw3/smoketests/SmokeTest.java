@@ -1,5 +1,8 @@
-package com.example.tw3.tests;
+package com.example.tw3.smoketests;
 
+import com.example.tw3.tests.*;
+import com.example.tw3.utility.LoginLogOut;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +19,17 @@ public class SmokeTest {
         logout.login();
     }
 
+    @AfterEach
+    public void tearDown(){
+        LoginLogOut.closeDriver();
+    }
+
     @Test
     public void logout() {
         logout.logout();
         logout.login();
         logout.multiTabLogout();
+
     }
 
     @Test

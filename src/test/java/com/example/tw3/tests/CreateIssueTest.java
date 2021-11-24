@@ -48,14 +48,8 @@ public class CreateIssueTest {
 
     @ParameterizedTest (name = "Specific issue: {0} project {1} type")
     @CsvFileSource(resources = "/issues.csv", numLinesToSkip = 1, delimiter = ';')
-    public void createSpecificIssues(String projectStr, String typeStr) { // TODO: Jeti bug + story should pass!
-        Project project = Project.valueOf(projectStr);
-        IssueType type = IssueType.valueOf(typeStr);
-        String summary = "dummy summary content";
-
-        createIssueMethods.fillForm(project, type, summary);
-        Assertions.assertTrue(createIssueMethods.validateInForm(project, type, summary));
-        createIssueMethods.closeCreateIssueScreen();
+    public void createSpecificIssues(String projectStr, String typeStr) {
+        Assertions.assertTrue(createIssueMethods.validateFormData(projectStr, typeStr));
     }
 
     @ParameterizedTest (name = "Sub-task for {0} project")

@@ -130,4 +130,9 @@ public class CreateIssueUtility {
         return createIssueScreen.getProjectField().getValue().equals(projectName) &&
                 createIssueScreen.getIssueTypeField().getValue().equals(type);
     }
+
+    private void fillForm(String projectName, String issueType) {
+        fillField(createIssueScreen.getProjectField(), projectName);
+        fillField(createIssueScreen.getIssueTypeField(), issueType);
+    }
 }

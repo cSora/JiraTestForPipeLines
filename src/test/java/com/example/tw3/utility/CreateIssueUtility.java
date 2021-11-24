@@ -121,4 +121,18 @@ public class CreateIssueUtility {
         }
         return more.getSubTaskOption().isDisplayed();
     }
+
+    public boolean validateFormData(String projectName, String type){
+        openScreen();
+        fillForm(projectName, type);
+        System.out.println(createIssueScreen.getProjectField().getValue());
+        System.out.println(createIssueScreen.getIssueTypeField().getValue());
+        return createIssueScreen.getProjectField().getValue().equals(projectName) &&
+                createIssueScreen.getIssueTypeField().getValue().equals(type);
+    }
+
+    private void fillForm(String projectName, String issueType) {
+        fillField(createIssueScreen.getProjectField(), projectName);
+        fillField(createIssueScreen.getIssueTypeField(), issueType);
+    }
 }

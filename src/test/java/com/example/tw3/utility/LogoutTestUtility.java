@@ -5,10 +5,7 @@ import com.example.tw3.pages.DashBoardPage;
 import com.example.tw3.pages.LogoutPage;
 import com.example.tw3.pages.ProfilePage;
 import com.example.tw3.pages.dropdowns.ProfileOptionsDropDown;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +13,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Set;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -26,6 +24,7 @@ public class LogoutTestUtility {
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
     LogoutPage logoutPage = new LogoutPage();
     ProfilePage profilePage = new ProfilePage();
+    String[] multipleTab = new String[2];
 
     public void logout() {
         wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
@@ -44,5 +43,50 @@ public class LogoutTestUtility {
         open(profilePage.url);
         wait.withTimeout(Duration.ofSeconds(5));
         return WebDriverRunner.getWebDriver().getCurrentUrl().equals(profilePage.url);
+    }
+
+    public void openNewTab(){
+        multipleTab[0] = WebDriverRunner.getWebDriver().getCurrentUrl();
+        multipleTab[1] = profilePage.url;
+
+        try {
+            Robot robot = new Robot();
+            robot.setAutoDelay(250); // Never remove this! This is what makes the whole thing work
+            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_D);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ALT);
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+
+        //Get all the handles currently available
+        Set<String> allHandles = WebDriverRunner.getWebDriver().getWindowHandles();
+        for(String actual: allHandles) {
+            if(!actual.equalsIgnoreCase(WebDriverRunner.getWebDriver().getWindowHandle())) {
+                //Switch to the opened tab
+                WebDriverRunner.getWebDriver().switchTo().window(actual);
+                //opening the URL saved.
+                WebDriverRunner.getWebDriver().get(multipleTab[1]);
+            }
+        }
+        WebDriverRunner.getWebDriver().navigate().to(multipleTab[1]);
+    }
+
+    public void switchToTab(int tab) {
+        ArrayList<String> tabs2 = new ArrayList<> (WebDriverRunner.getWebDriver().getWindowHandles());
+        WebDriverRunner.getWebDriver().switchTo().window(tabs2.get(tab));
+    }
+
+    public void refreshPage() {
+        try {
+            Robot robot = new Robot();
+            robot.setAutoDelay(250); // Never remove this!
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_R);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
     }
 }

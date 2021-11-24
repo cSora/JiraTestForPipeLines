@@ -10,8 +10,8 @@ public class CreateIssueScreen {
     private SelenideElement issueTypeField = $x("//input[@id='issuetype-field']");
     private SelenideElement summaryField = $x("//input[@id='summary']");
     private SelenideElement cancelBtn = $x("//button[text()='Cancel']");
-
     private SelenideElement issueLink = $x("//a[@class='issue-created-key issue-link']");
+    private SelenideElement createIssueHeader = $x("//h2[contains(text(),'Create Issue')]");
 
     public SelenideElement getScreen() {
         return screen;
@@ -39,5 +39,9 @@ public class CreateIssueScreen {
 
     public SelenideElement getCancelBtn() {
         return cancelBtn;
+    }
+
+    public SelenideElement getCreateIssueHeader() {
+        return createIssueHeader;
     }
 }

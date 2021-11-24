@@ -134,5 +134,7 @@ public class CreateIssueUtility {
     private void fillForm(String projectName, String issueType) {
         fillField(createIssueScreen.getProjectField(), projectName);
         fillField(createIssueScreen.getIssueTypeField(), issueType);
+        createIssueScreen.getCreateIssueHeader().click();
+
     }
 }

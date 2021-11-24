@@ -35,13 +35,23 @@ public class LogoutTestUtility {
 
     public boolean isMessageVisible() {
         wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
-        wait.until(ExpectedConditions.urlContains(logoutPage.url));
+        wait.until(ExpectedConditions.visibilityOf(logoutPage.getAtlasssianLogo()));
+        if(altLogout()){
+            logoutPage.getAltLogOutBtn().click();
+        }
         return logoutPage.getMessageWindow().isDisplayed();
+    }
+
+    private boolean altLogout() {
+        return logoutPage.getMessageWindow1().isDisplayed();
     }
 
     public boolean isProfilePageAvailable() {
         open(profilePage.url);
         wait.withTimeout(Duration.ofSeconds(5));
+        String expectedUrl = profilePage.url;
+        String actualUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
+        System.out.println(expectedUrl.equals(actualUrl));
         return WebDriverRunner.getWebDriver().getCurrentUrl().equals(profilePage.url);
     }
 
@@ -54,7 +64,9 @@ public class LogoutTestUtility {
             robot.setAutoDelay(250); // Never remove this! This is what makes the whole thing work
             robot.keyPress(KeyEvent.VK_ALT);
             robot.keyPress(KeyEvent.VK_D);
+            robot.keyRelease(KeyEvent.VK_D);
             robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ALT);
         } catch (AWTException e) {
             e.printStackTrace();
@@ -84,6 +96,7 @@ public class LogoutTestUtility {
             robot.setAutoDelay(250); // Never remove this!
             robot.keyPress(KeyEvent.VK_CONTROL);
             robot.keyPress(KeyEvent.VK_R);
+            robot.keyRelease(KeyEvent.VK_R);
             robot.keyRelease(KeyEvent.VK_CONTROL);
         } catch (AWTException e) {
             e.printStackTrace();

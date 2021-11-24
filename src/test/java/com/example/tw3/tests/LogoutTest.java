@@ -10,7 +10,7 @@ public class LogoutTest {
     private LogoutTestUtility logoutMethods = new LogoutTestUtility();
 
     @BeforeEach
-    private void login() {
+    public void login() {
         LoginLogOut.loginPrimary();
     }
 
@@ -21,17 +21,15 @@ public class LogoutTest {
         Assertions.assertFalse(logoutMethods.isProfilePageAvailable());
     }
 
-    /* TODO: implement methods
     @Test
     public void multiTabLogout() {
         logoutMethods.openNewTab();
-        logoutMethods.switchTab();
+        logoutMethods.switchToTab(0);
         logoutMethods.logout();
         Assertions.assertTrue(logoutMethods.isMessageVisible());
         Assertions.assertFalse(logoutMethods.isProfilePageAvailable());
-        logoutMethods.switchTab();
+        logoutMethods.switchToTab(1);
+        logoutMethods.refreshPage();
         Assertions.assertFalse(logoutMethods.isProfilePageAvailable());
     }
-
-     */
 }

@@ -1,6 +1,5 @@
 package com.example.tw3.tests;
 
-import com.example.tw3.utility.BrowseIssueUtility;
 import com.example.tw3.utility.EditIssueUtility;
 import com.example.tw3.utility.LoginLogOut;
 import org.junit.jupiter.api.AfterAll;

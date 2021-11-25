@@ -10,11 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginTestsUtility {
     WebDriverWait wait;
 
-
-
-    DashBoardPage dashBoardPage = new DashBoardPage();
-    ProfilePage profilePage = new ProfilePage();
-    LoginPage loginPage = new LoginPage();
+    private final DashBoardPage dashBoardPage = new DashBoardPage();
+    private final ProfilePage profilePage = new ProfilePage();
+    private final LoginPage loginPage = new LoginPage();
 
 
 

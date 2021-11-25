@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class BrowseProjectTest {
 
-    BrowseProjectUtility browseProjectUtility = new BrowseProjectUtility();
+    private final BrowseProjectUtility browseProjectUtility = new BrowseProjectUtility();
 
     @BeforeAll
     public static void login(){

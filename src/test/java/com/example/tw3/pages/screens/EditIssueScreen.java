@@ -5,9 +5,9 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class EditIssueScreen {
-    SelenideElement editIssueDialog = $x("//section[@id='edit-issue-dialog']");
-    SelenideElement issueSummaryField = $x("//input[@id='summary']");
-    SelenideElement issueUpdateBtn = $x("//input[@id='edit-issue-submit']");
+    private final SelenideElement editIssueDialog = $x("//section[@id='edit-issue-dialog']");
+    private final SelenideElement issueSummaryField = $x("//input[@id='summary']");
+    private final SelenideElement issueUpdateBtn = $x("//input[@id='edit-issue-submit']");
 
 
     public SelenideElement getEditIssueDialog() {

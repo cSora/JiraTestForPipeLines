@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import java.util.UUID;
 
 public class CreateIssueTest {
-    CreateIssueUtility createIssueMethods = new CreateIssueUtility();
+    private final CreateIssueUtility createIssueMethods = new CreateIssueUtility();
 
     @BeforeEach
     public  void openPage() {

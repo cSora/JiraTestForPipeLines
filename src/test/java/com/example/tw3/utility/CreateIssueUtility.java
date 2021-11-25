@@ -13,7 +13,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -48,7 +47,7 @@ public class CreateIssueUtility {
 
     public void fillField(SelenideElement field, String value) {
         field.click();
-        int textSize = field.getValue().length();
+        int textSize = Objects.requireNonNull(field.getValue()).length();
         for (int i = 0; i < textSize; i++) {
             field.sendKeys(Keys.BACK_SPACE);
         }
@@ -78,8 +77,7 @@ public class CreateIssueUtility {
         if (!projectResult.equals(project.getFullName())) { return false; }
         if (!typeResult.equals(type.name())) { return false; }
         if (!summaryResult.equals(summary)) { return false; }
-        // if (!issuePage.getReporterValue().getText().equals(System.getenv("user"))) { return false; }
-        return true;
+        return issuePage.getReporterValue().getText().equals(System.getenv("user"));
     }
 
     public boolean validateIssuePage(String summary, String url) {
@@ -127,8 +125,8 @@ public class CreateIssueUtility {
         fillForm(projectName, type);
         System.out.println(createIssueScreen.getProjectField().getValue());
         System.out.println(createIssueScreen.getIssueTypeField().getValue());
-        return createIssueScreen.getProjectField().getValue().equals(projectName) &&
-                createIssueScreen.getIssueTypeField().getValue().equals(type);
+        return Objects.equals(createIssueScreen.getProjectField().getValue(), projectName) &&
+                Objects.equals(createIssueScreen.getIssueTypeField().getValue(), type);
     }
 
     private void fillForm(String projectName, String issueType) {

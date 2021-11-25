@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static com.codeborne.selenide.Selenide.open;
 
 public class BrowseProjectUtility {
-    WebDriverWait wait;
+    private WebDriverWait wait;
 
 
     BrowseProjectsPage browseProjectsPage = new BrowseProjectsPage();

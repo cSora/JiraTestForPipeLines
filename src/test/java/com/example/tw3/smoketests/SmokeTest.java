@@ -7,12 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class SmokeTest {
-    private LoginTest login = new LoginTest();
-    private LogoutTest logout = new LogoutTest();
-    private BrowseIssueTest browseIssue = new BrowseIssueTest();
-    private BrowseProjectTest browseProject = new BrowseProjectTest();
-    private CreateIssueTest createIssue = new CreateIssueTest();
-    private EditIssueTest editIssue = new EditIssueTest();
+    private final LoginTest login = new LoginTest();
+    private final LogoutTest logout = new LogoutTest();
+    private final BrowseIssueTest browseIssue = new BrowseIssueTest();
+    private final BrowseProjectTest browseProject = new BrowseProjectTest();
+    private final CreateIssueTest createIssue = new CreateIssueTest();
+    private final EditIssueTest editIssue = new EditIssueTest();
 
     @BeforeEach
     public void setUp() {

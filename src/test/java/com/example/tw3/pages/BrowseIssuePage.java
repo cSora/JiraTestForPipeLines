@@ -6,11 +6,11 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class BrowseIssuePage {
     public final String preSetIssueUrl = "https://jira-auto.codecool.metastage.net/browse/MTP-1188";
-    String customIssueUrl = "https://jira-auto.codecool.metastage.net/browse/";
-    SelenideElement issueSummary = $x("//h1[@id='summary-val']");
-    SelenideElement issueKey = $x("//a[@id='key-val']");
-    SelenideElement issueError = $x("//div[@class='issue-error']");
-    private SelenideElement editIssueBtn = $x("//a[@id='edit-issue']");
+    private String customIssueUrl = "https://jira-auto.codecool.metastage.net/browse/";
+    private final SelenideElement issueSummary = $x("//h1[@id='summary-val']");
+    private final SelenideElement issueKey = $x("//a[@id='key-val']");
+    private final SelenideElement issueError = $x("//div[@class='issue-error']");
+    private final SelenideElement editIssueBtn = $x("//a[@id='edit-issue']");
 
 
     public SelenideElement getIssueSummary() {

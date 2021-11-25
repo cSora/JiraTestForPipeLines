@@ -5,7 +5,6 @@ import com.example.tw3.pages.DashBoardPage;
 import com.example.tw3.pages.LogoutPage;
 import com.example.tw3.pages.ProfilePage;
 import com.example.tw3.pages.dropdowns.ProfileOptionsDropDown;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,11 +19,11 @@ import static com.codeborne.selenide.Selenide.open;
 public class LogoutTestUtility {
     WebDriverWait wait;
 
-    DashBoardPage dashBoardPage = new DashBoardPage();
-    ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
-    LogoutPage logoutPage = new LogoutPage();
-    ProfilePage profilePage = new ProfilePage();
-    String[] multipleTab = new String[2];
+    private final DashBoardPage dashBoardPage = new DashBoardPage();
+    private final ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
+    private final LogoutPage logoutPage = new LogoutPage();
+    private final ProfilePage profilePage = new ProfilePage();
+    private final String[] multipleTab = new String[2];
 
     public void logout() {
         wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);

@@ -7,10 +7,10 @@ import static com.codeborne.selenide.Selenide.$x;
 public class LogoutPage {
     public String url = "jira-auto.codecool.metastage.net/secure/Logout!";
 
-    private SelenideElement messageWindow = $x("//strong[text()='You are now logged out. Any automatic login has also been stopped.']");
-    private SelenideElement messageWindow1 = $x("//form[@id='confirm-logout']");
-    private SelenideElement atlasssianLogo = $x("//div[@id='footer-logo']");
-    private SelenideElement altLogOutBtn = $x("//input[@id='confirm-logout-submit']");
+    private final SelenideElement messageWindow = $x("//strong[text()='You are now logged out. Any automatic login has also been stopped.']");
+    private final SelenideElement messageWindow1 = $x("//form[@id='confirm-logout']");
+    private final SelenideElement atlasssianLogo = $x("//div[@id='footer-logo']");
+    private final SelenideElement altLogOutBtn = $x("//input[@id='confirm-logout-submit']");
 
     public SelenideElement getMessageWindow() {
         return messageWindow;

@@ -9,7 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class BrowseIssueTest {
-    BrowseIssueUtility browseIssueUtility = new BrowseIssueUtility();
+    private final BrowseIssueUtility browseIssueUtility = new BrowseIssueUtility();
 
     @BeforeAll
     public static void Login(){

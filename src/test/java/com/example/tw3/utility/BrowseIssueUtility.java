@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static com.codeborne.selenide.Selenide.open;
 
 public class BrowseIssueUtility {
-    WebDriverWait wait;
+    private WebDriverWait wait;
 
     BrowseIssuePage browseIssuePage = new BrowseIssuePage();
 

@@ -1,9 +1,7 @@
 package com.example.tw3.utility;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.BrowseIssuePage;
-import com.example.tw3.pages.IssuePage;
 import com.example.tw3.pages.dropdowns.IssueType;
 import com.example.tw3.pages.dropdowns.Project;
 import com.example.tw3.pages.screens.EditIssueScreen;

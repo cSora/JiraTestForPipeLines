@@ -5,13 +5,13 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class IssuePage {
-    private SelenideElement detailsSection = $x("//ul[@id='issuedetails']");
-    private SelenideElement summaryValue = $x("//h1[@id='summary-val']");
-    private SelenideElement projectNameValue = $x("//a[@id='project-name-val']");
-    private SelenideElement typeValue = $x("//span[@id='type-val']");
-    private SelenideElement reporterValue = $x("//span[@id='issue_summary_reporter_" + System.getenv("username") + "']");
-    private SelenideElement moreBtn = $x("//a[@id='opsbar-operations_more']");
-    private SelenideElement cantViewIssueMessage = $x("//span[@class='error-image error-image-canNotBeViewed']");
+    private final SelenideElement detailsSection = $x("//ul[@id='issuedetails']");
+    private final SelenideElement summaryValue = $x("//h1[@id='summary-val']");
+    private final SelenideElement projectNameValue = $x("//a[@id='project-name-val']");
+    private final SelenideElement typeValue = $x("//span[@id='type-val']");
+    private final SelenideElement reporterValue = $x("//span[@id='issue_summary_reporter_" + System.getenv("username") + "']");
+    private final SelenideElement moreBtn = $x("//a[@id='opsbar-operations_more']");
+    private final SelenideElement cantViewIssueMessage = $x("//span[@class='error-image error-image-canNotBeViewed']");
 
 
     public SelenideElement getDetailsSection() {

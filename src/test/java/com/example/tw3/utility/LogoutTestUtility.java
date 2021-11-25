@@ -26,23 +26,13 @@ public class LogoutTestUtility {
     private final String[] multipleTab = new String[2];
 
     public void logout() {
-        wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
-        dashBoardPage.getProfileBtn().click();
-        wait.until(ExpectedConditions.visibilityOf(profileOptionsDropDown.getLogoutOption()));
-        profileOptionsDropDown.getLogoutOption().click();
-    }
+        LoginLogOut.logout();
+        }
 
     public boolean isMessageVisible() {
         wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
         wait.until(ExpectedConditions.visibilityOf(logoutPage.getAtlasssianLogo()));
-        if(altLogout()){
-            logoutPage.getAltLogOutBtn().click();
-        }
         return logoutPage.getMessageWindow().isDisplayed();
-    }
-
-    private boolean altLogout() {
-        return logoutPage.getMessageWindow1().isDisplayed();
     }
 
     public boolean isProfilePageAvailable() {

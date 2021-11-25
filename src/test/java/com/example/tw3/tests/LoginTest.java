@@ -12,8 +12,8 @@ public class LoginTest {
     private final LoginTestsUtility loginMethods = new LoginTestsUtility();
 
     @AfterEach
-    public void closeDriver(){
-        LoginLogOut.closeDriver();
+    public void logOut(){
+        LoginLogOut.logout();
     }
 
     @Test

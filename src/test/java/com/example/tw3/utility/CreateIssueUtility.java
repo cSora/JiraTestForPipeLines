@@ -74,6 +74,7 @@ public class CreateIssueUtility {
         String projectResult = issuePage.getProjectNameValue().getText();
         String typeResult = issuePage.getTypeValue().getText();
         String summaryResult = issuePage.getSummaryValue().getText();
+        System.out.println(projectResult+" "+typeResult+" "+summaryResult);
         if (!projectResult.equals(project.getFullName())) { return false; }
         if (!typeResult.equals(type.name())) { return false; }
         if (!summaryResult.equals(summary)) { return false; }

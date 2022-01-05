@@ -14,7 +14,7 @@ public class LoginTest {
 
     @AfterEach
     public void logOut(){
-        LoginLogOut.logout();
+         LoginLogOut.logout();
     }
 
     @AfterAll

@@ -28,7 +28,7 @@ public class SmokeTest {
     public void logout() {
         logout.logout();
         logout.login();
-        logout.multiTabLogout();
+        //logout.multiTabLogout();
 
     }
 

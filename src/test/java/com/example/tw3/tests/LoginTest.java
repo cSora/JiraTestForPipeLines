@@ -2,6 +2,7 @@ package com.example.tw3.tests;
 
 import com.example.tw3.utility.LoginLogOut;
 import com.example.tw3.utility.LoginTestsUtility;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,11 @@ public class LoginTest {
     @AfterEach
     public void logOut(){
         LoginLogOut.logout();
+    }
+
+    @AfterAll
+    public  static void tearDown(){
+        LoginLogOut.closeDriver();
     }
 
     @Test

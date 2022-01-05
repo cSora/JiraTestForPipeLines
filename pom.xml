@@ -60,5 +60,21 @@
             <directory>src/test/resources</directory>
             </testResource>
         </testResources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                    <configuration>
+                        <environmentVariables>
+                            <username>automation11</username>
+                            <password>CCAutoTest19.</password>
+                            <user>Auto Tester 11</user>
+                        </environmentVariables>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>

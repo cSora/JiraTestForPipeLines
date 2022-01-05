@@ -38,7 +38,6 @@ public interface LoginLogOut {
         open(loginPage.url);
         loginPage.getUsernameField().sendKeys(System.getenv("username"));
         loginPage.getPasswordField().sendKeys(Objects.requireNonNullElse(password, ""));
-        // maybe white space isn't tested yet but it send null
         loginPage.getLoginForm().submit();
     }
 

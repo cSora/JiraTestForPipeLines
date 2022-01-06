@@ -45,7 +45,7 @@ public interface LoginLogOut {
     static void logInWithWrongPassword(String password) {
         open(loginPage.url);
         loginPage.getUsernameField().sendKeys(System.getProperty("username"));
-        loginPage.getPasswordField().sendKeys(Objects.requireNonNullElse(password, ""));
+        loginPage.getPasswordField().sendKeys(password == null ? "" : password);
         loginPage.getLoginForm().submit();
     }
 

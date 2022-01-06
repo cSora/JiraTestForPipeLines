@@ -28,7 +28,7 @@ public class LoginTestsUtility {
 
     public boolean isUserNameSame() {
         wait.until(ExpectedConditions.visibilityOf(profilePage.getDisplayedUserName()));
-        return profilePage.getDisplayedUserName().text().equals(System.getenv("username"));
+        return profilePage.getDisplayedUserName().text().equals(System.getProperty("username"));
     }
 
     public boolean isErrorMessageDisplayed(){

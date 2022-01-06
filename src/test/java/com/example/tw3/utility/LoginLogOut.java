@@ -22,21 +22,29 @@ public interface LoginLogOut {
 
     static void loginPrimary(){
         open(loginPage.url);
-        loginPage.getUsernameField().sendKeys(System.getenv("username"));
-        loginPage.getPasswordField().sendKeys(System.getenv("password"));
+        if(System.getenv("username") == null) {
+            loginPage.getUsernameField().sendKeys(System.getProperty("username"));
+        } else {
+            loginPage.getUsernameField().sendKeys(System.getenv("username"));
+        }
+        if (System.getenv("password") == null) {
+            loginPage.getPasswordField().sendKeys(System.getProperty("password"));
+        } else {
+            loginPage.getPasswordField().sendKeys(System.getenv("password"));
+        }
         loginPage.getLoginForm().submit();
     }
 
     static void loginSecondary(){
         open(secondaryLoginPage.url);
-        secondaryLoginPage.getUsernameField().sendKeys(System.getenv("username"));
-        secondaryLoginPage.getPasswordField().sendKeys(System.getenv("password"));
+        secondaryLoginPage.getUsernameField().sendKeys(System.getProperty("username"));
+        secondaryLoginPage.getPasswordField().sendKeys(System.getProperty("password"));
         secondaryLoginPage.getLoginForm().submit();
     }
 
     static void logInWithWrongPassword(String password) {
         open(loginPage.url);
-        loginPage.getUsernameField().sendKeys(System.getenv("username"));
+        loginPage.getUsernameField().sendKeys(System.getProperty("username"));
         loginPage.getPasswordField().sendKeys(Objects.requireNonNullElse(password, ""));
         loginPage.getLoginForm().submit();
     }

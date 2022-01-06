@@ -78,7 +78,8 @@ public class CreateIssueUtility {
         if (!projectResult.equals(project.getFullName())) { return false; }
         if (!typeResult.equals(type.name())) { return false; }
         if (!summaryResult.equals(summary)) { return false; }
-        return issuePage.getReporterValue().getText().equals(System.getenv("user"));
+        return System.getProperty("user") != null ? issuePage.getReporterValue().getText().equals(System.getProperty("user"))
+                                                    : issuePage.getReporterValue().getText().equals(System.getenv("user"));
     }
 
     public boolean validateIssuePage(String summary, String url) {

@@ -2,12 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('First Stage') {
-            steps {
-            echo 'Clean workspace before'
-                cleanWs()
-            }
-        }
+        stage('Build') {
+                    agent any
+                    steps {
+                        echo 'Building...'
+                        sh "java -version"
+                        cleanWs()
+                    }
+                }
         stage('Test Stage') {
             parallel(){
                 stage('Parallel 1'){

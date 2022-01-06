@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('First Stage') {
             steps {
-                echo 'Stage 1'
+            echo 'Clean workspace before'
+                cleanWs()
             }
         }
         stage('Second Stage') {
@@ -23,7 +24,8 @@ pipeline {
             }
      stage('Third Stage') {
             steps {
-                echo 'Stage 3'
+                echo 'Clean workspace after'
+                cleanWs()
             }
         }
 

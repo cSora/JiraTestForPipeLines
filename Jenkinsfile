@@ -8,11 +8,14 @@ pipeline {
                 cleanWs()
             }
         }
-        stage('Second Stage') {
+        stage('Test Stage') {
             parallel(){
                 stage('Parallel 1'){
                     steps {
-                    echo 'Stage 2 - Parallel 1'
+                    echo 'Chrome tests'
+                    withCredentials([usernamePassword(credentialsId: 'a91b8324-f5cf-4629-821e-42ccbcd06214', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    sh "mvn -Dpassword=${password}. -Dusername=${username} '-Duser=Auto Tester 11' test"
+                    }
                     }
                     }
                 stage('Parallel 2'){

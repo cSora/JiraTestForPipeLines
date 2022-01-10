@@ -21,9 +21,18 @@ pipeline {
                     steps {
                         echo 'Chrome tests'
                         withCredentials([usernamePassword(credentialsId: 'a91b8324-f5cf-4629-821e-42ccbcd06214', passwordVariable: 'password', usernameVariable: 'username'), usernamePassword(credentialsId: '3a6c0e30-70a3-44be-b0f4-518fd3d15e3a', passwordVariable: 'gridPassword', usernameVariable: 'gridUser')]) {
+                        sh "echo ${password} > passwordfile "
+                        sh "echo ${gridPassword} >> passwordfile "
                         sh "mvn -Dpassword=${password} -Dusername=${username} '-Duser=Auto Tester 11' -Dbrowser=${params.browser} -DbaseUrl=${params.baseUrl} -Dtimeout=${timeout} -DgridUser=${gridUser} -DgridPassword=${gridPassword} test"
-                        }
+
+                       }
+
                     }
+                    post {
+                            always {
+                                archive "**/passwordfile"
+                                }
+                            }
                 }
                 stage('Firefox tests'){
                     steps {

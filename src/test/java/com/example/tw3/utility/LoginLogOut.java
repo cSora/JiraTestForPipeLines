@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -33,7 +34,7 @@ public interface LoginLogOut {
 
     static void setDriver(){
         Configuration.baseUrl = System.getProperty("baseUrl");
-        Configuration.browser = System.getProperty("browser");
+        Configuration.browserCapabilities = Objects.equals(System.getProperty("browser"), "chrome") ? new ChromeOptions() : new FirefoxOptions();
         Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
         Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
                 + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";

@@ -25,7 +25,7 @@ public interface LoginLogOut {
     static void setDriver(){
         Configuration.baseUrl = System.getProperty("baseUrl");
         Configuration.browser = System.getProperty("browser");
-        Configuration.timeout = Long.getLong(System.getProperty("timeOut"));
+        Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
         Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
                 + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
     }

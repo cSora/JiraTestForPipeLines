@@ -43,7 +43,7 @@ public interface LoginLogOut {
             // output.txt, this is the output.
             File file = new File("output.txt");
             // We'll write the string below into the file
-            String data = System.getProperty("browser") + " \n " +
+            String data = System.getProperty("browser") + "\n " +
                    gridUrl ;
 
             // To write a file called the writeStringToFile

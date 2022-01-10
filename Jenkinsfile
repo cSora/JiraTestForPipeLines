@@ -2,7 +2,7 @@ pipeline {
     agent any
      parameters {
                  string(name: 'browser', defaultValue: 'chrome', description: '')
-                 string(name: 'baseUrl', defaultValue: 'https://jira-auto.codecool.metastage.net/', description: '')
+                 string(name: 'baseUrl', defaultValue: 'https://jira-auto.codecool.metastage.net', description: '')
                  string(name: 'timeout', defaultValue: '30', description: '')
                  }
 

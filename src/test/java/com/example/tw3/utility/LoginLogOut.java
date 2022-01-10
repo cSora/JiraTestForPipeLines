@@ -1,15 +1,17 @@
 package com.example.tw3.utility;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.DashBoardPage;
 import com.example.tw3.pages.LoginPage;
 import com.example.tw3.pages.LogoutPage;
 import com.example.tw3.pages.SecondaryLoginPage;
 import com.example.tw3.pages.dropdowns.ProfileOptionsDropDown;
+import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -20,7 +22,17 @@ public interface LoginLogOut {
     DashBoardPage dashBoardPage = new DashBoardPage();
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
 
+    static void setDriver(){
+        Configuration.baseUrl = System.getProperty("baseUrl");
+        Configuration.browser = System.getProperty("browser");
+        Configuration.timeout = Long.getLong(System.getProperty("timeOut"));
+        Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
+                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+    }
+
+
     static void loginPrimary(){
+        setDriver();
         open(loginPage.url);
         if(System.getenv("username") == null) {
             loginPage.getUsernameField().sendKeys(System.getProperty("username"));
@@ -36,6 +48,7 @@ public interface LoginLogOut {
     }
 
     static void loginSecondary(){
+        setDriver();
         open(secondaryLoginPage.url);
         secondaryLoginPage.getUsernameField().sendKeys(System.getProperty("username"));
         secondaryLoginPage.getPasswordField().sendKeys(System.getProperty("password"));
@@ -43,6 +56,7 @@ public interface LoginLogOut {
     }
 
     static void logInWithWrongPassword(String password) {
+        setDriver();
         open(loginPage.url);
         loginPage.getUsernameField().sendKeys(System.getProperty("username"));
         loginPage.getPasswordField().sendKeys(password == null ? "" : password);

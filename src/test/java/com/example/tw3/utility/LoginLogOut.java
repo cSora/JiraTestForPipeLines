@@ -33,19 +33,19 @@ public interface LoginLogOut {
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
 
     static void setDriver(){
-//        Configuration.baseUrl = System.getProperty("baseUrl");
-//        Configuration.browserCapabilities = Objects.equals(System.getProperty("browser"), "chrome") ? new ChromeOptions() : new FirefoxOptions();
-//        Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
-//        Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
-//                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
-        MutableCapabilities browserType = System.getProperty("browser") == "chrome" ? new ChromeOptions() : new FirefoxOptions();
-        String gridUrl = "https://" + System.getProperty("gridUser") + ":" + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
-        try {
-            WebDriver driver = new RemoteWebDriver(new URL(gridUrl), browserType);
-            WebDriverRunner.setWebDriver(driver);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        Configuration.baseUrl = System.getProperty("baseUrl");
+        Configuration.browserCapabilities = Objects.equals(System.getProperty("browser"), "chrome") ? new ChromeOptions() : new FirefoxOptions();
+        Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
+        Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
+                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+//        MutableCapabilities browserType = System.getProperty("browser") == "chrome" ? new ChromeOptions() : new FirefoxOptions();
+//        String gridUrl = "https://" + System.getProperty("gridUser") + ":" + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+//        try {
+//            WebDriver driver = new RemoteWebDriver(new URL(gridUrl), browserType);
+//            WebDriverRunner.setWebDriver(driver);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
     }
 
 

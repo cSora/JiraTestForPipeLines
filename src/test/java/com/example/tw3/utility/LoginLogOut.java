@@ -8,6 +8,7 @@ import com.example.tw3.pages.LogoutPage;
 import com.example.tw3.pages.SecondaryLoginPage;
 import com.example.tw3.pages.dropdowns.ProfileOptionsDropDown;
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +20,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
@@ -33,12 +36,28 @@ public interface LoginLogOut {
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
 
     static void setDriver(){
+        String gridUrl = "https://" + System.getProperty("gridUser") + ":"
+                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+        try {
+            // Here we'll write our data into a file called
+            // output.txt, this is the output.
+            File file = new File("output.txt");
+            // We'll write the string below into the file
+            String data = System.getProperty("browser") + " \n " +
+                   gridUrl ;
+
+            // To write a file called the writeStringToFile
+            // method which require you to pass the file and
+            // the data to be written.
+            FileUtils.writeStringToFile(file, data, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Configuration.baseUrl = System.getProperty("baseUrl");
 //        Configuration.browserCapabilities = Objects.equals(System.getProperty("browser"), "chrome") ? new ChromeOptions() : new FirefoxOptions();
         Configuration.browser = System.getProperty("browser");
         Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
-        Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
-                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+        Configuration.remote = gridUrl;
 //        MutableCapabilities browserType = System.getProperty("browser") == "chrome" ? new ChromeOptions() : new FirefoxOptions();
 //        String gridUrl = "https://" + System.getProperty("gridUser") + ":" + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
 //        try {

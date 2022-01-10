@@ -29,7 +29,7 @@ pipeline {
                     }
                     post {
                             always {
-                                archive "**/passwordfile"
+                                archive "**/output.txt"
                                 }
                             }
                 }

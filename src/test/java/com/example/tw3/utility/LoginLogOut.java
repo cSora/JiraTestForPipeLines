@@ -1,5 +1,6 @@
 package com.example.tw3.utility;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.DashBoardPage;
 import com.example.tw3.pages.LoginPage;
@@ -11,7 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -23,8 +23,11 @@ public interface LoginLogOut {
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
 
     static void setDriver(){
-        WebDriver driver = ChromeDriverManager.getInstance().getWebDriver();
-        WebDriverRunner.setWebDriver(driver);
+        Configuration.baseUrl = System.getProperty("baseUrl");
+        Configuration.browser = System.getProperty("browser");
+        Configuration.timeout = Long.getLong(System.getProperty("timeOut"));
+        Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
+                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
     }
 
 

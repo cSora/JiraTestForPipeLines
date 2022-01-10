@@ -24,7 +24,7 @@ pipeline {
                         usernamePassword(credentialsId: 'a91b8324-f5cf-4629-821e-42ccbcd06214', passwordVariable: 'password', usernameVariable: 'username'),
                         usernamePassword(credentialsId: '4307809c-ede1-4acd-b73d-7d4764e62625', passwordVariable: 'gridPassword', usernameVariable: 'gridUser')
                         ]) {
-                        sh "mvn -Dpassword=${password} -Dusername=${username} '-Duser=Auto Tester 11' -Dbrowser=${params.browser} -DbaseUrl = ${params.baseUrl} -DgridUser = ${gridUser} -DgridPassword = ${gridPassword} test"
+                        sh "mvn -Dpassword=${password} -Dusername=${username} '-Duser=Auto Tester 11' -Dbrowser=${params.browser} '-DbaseUrl=${params.baseUrl}' -DgridUser = ${gridUser} -DgridPassword = ${gridPassword} test"
                         }
                     }
                 }

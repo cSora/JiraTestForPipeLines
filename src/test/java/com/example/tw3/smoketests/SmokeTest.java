@@ -16,7 +16,7 @@ public class SmokeTest {
 
     @BeforeEach
     public void setUp() {
-        logout.login();
+        LoginLogOut.loginPrimary();
     }
 
     @AfterEach

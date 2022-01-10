@@ -8,10 +8,19 @@ import com.example.tw3.pages.LogoutPage;
 import com.example.tw3.pages.SecondaryLoginPage;
 import com.example.tw3.pages.dropdowns.ProfileOptionsDropDown;
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -23,11 +32,19 @@ public interface LoginLogOut {
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
 
     static void setDriver(){
-        Configuration.baseUrl = System.getProperty("baseUrl");
-        Configuration.browser = System.getProperty("browser");
-        Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
-        Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
-                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+//        Configuration.baseUrl = System.getProperty("baseUrl");
+//        Configuration.browser = System.getProperty("browser");
+//        Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
+//        Configuration.remote = "https://" + System.getProperty("gridUser") + ":"
+//                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+        MutableCapabilities browserType = System.getProperty("browser") == "chrome" ? new ChromeOptions() : new FirefoxOptions();
+        String gridUrl = "https://" + System.getProperty("gridUser") + ":" + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+        try {
+            WebDriver driver = new RemoteWebDriver(new URL(gridUrl), browserType);
+            WebDriverRunner.setWebDriver(driver);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
 

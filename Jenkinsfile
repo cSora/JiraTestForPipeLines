@@ -26,6 +26,7 @@ pipeline {
                        }
 
                     }
+                }
                 stage('Firefox tests'){
                     steps {
                         echo 'Firefox tests'
@@ -41,5 +42,4 @@ pipeline {
             }
         }
     }
-}
 }

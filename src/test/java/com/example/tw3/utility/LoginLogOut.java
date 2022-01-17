@@ -1,5 +1,6 @@
 package com.example.tw3.utility;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.DashBoardPage;
 import com.example.tw3.pages.LoginPage;
@@ -20,14 +21,24 @@ public interface LoginLogOut {
     DashBoardPage dashBoardPage = new DashBoardPage();
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
 
+    static void setFireFoxDriver(){
+        Configuration.browser = "firefox";
+
+    }
+
     static void loginPrimary(){
+        setFireFoxDriver();
         open(loginPage.url);
+        WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 10);
         loginPage.getUsernameField().sendKeys(System.getenv("username"));
         loginPage.getPasswordField().sendKeys(System.getenv("password"));
         loginPage.getLoginForm().submit();
+        wait.until(ExpectedConditions.visibilityOf(dashBoardPage.getProfileBtn()));
+
     }
 
     static void loginSecondary(){
+        setFireFoxDriver();
         open(secondaryLoginPage.url);
         secondaryLoginPage.getUsernameField().sendKeys(System.getenv("username"));
         secondaryLoginPage.getPasswordField().sendKeys(System.getenv("password"));
@@ -35,6 +46,7 @@ public interface LoginLogOut {
     }
 
     static void logInWithWrongPassword(String password) {
+        setFireFoxDriver();
         open(loginPage.url);
         loginPage.getUsernameField().sendKeys(System.getenv("username"));
         loginPage.getPasswordField().sendKeys(Objects.requireNonNullElse(password, ""));
@@ -46,6 +58,7 @@ public interface LoginLogOut {
     }
 
     static void logout() {
+        setFireFoxDriver();
         WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
         dashBoardPage.getProfileBtn().click();
         wait.until(ExpectedConditions.visibilityOf(profileOptionsDropDown.getLogoutOption()));

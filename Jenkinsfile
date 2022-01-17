@@ -24,8 +24,15 @@ pipeline {
                         sh "mvn -Dpassword=${password} -Dusername=${username} '-Duser=Auto Tester 11' -Dbrowser=${params.browser} -DbaseUrl=${params.baseUrl} -Dtimeout=${timeout} -DgridUser=${gridUser} -DgridPassword=${gridPassword} -Dtest=SmokeTest test"
 
                        }
-
                     }
+                    post {
+                                    success {
+                                        junit 'target/surefire-reports/**/*.xml'
+                                    }
+                                    always {
+                                        archiveArtifacts artifacts: '**/properties.txt'
+                                    }
+                                }
                 }
                 stage('Firefox tests'){
                     steps {

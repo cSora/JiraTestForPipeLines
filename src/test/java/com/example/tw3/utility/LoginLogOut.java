@@ -7,24 +7,12 @@ import com.example.tw3.pages.LoginPage;
 import com.example.tw3.pages.LogoutPage;
 import com.example.tw3.pages.SecondaryLoginPage;
 import com.example.tw3.pages.dropdowns.ProfileOptionsDropDown;
-import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -70,6 +58,7 @@ public interface LoginLogOut {
     static void loginPrimary(){
         setDriver();
         open(loginPage.url);
+        WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
         if(System.getenv("username") == null) {
             loginPage.getUsernameField().sendKeys(System.getProperty("username"));
         } else {

@@ -1,9 +1,13 @@
 package com.example.tw3.utility;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.example.tw3.pages.BrowseProjectsPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -15,8 +19,13 @@ public class BrowseProjectUtility {
 
     public void navigateToMainTestingProjectSummary(){
         open(browseProjectsPage.url);
+        wait =  new WebDriverWait(WebDriverRunner.getWebDriver(),10);
         browseProjectsPage.getMainTestingProjectLink().click();
+        if(Objects.equals(Configuration.browser, "firefox")) {
+            wait.withTimeout(Duration.ofSeconds(10));
+        }
         browseProjectsPage.getMTPprojectTitle().click();
+
     }
 
     public boolean validateProjectKey(){
@@ -38,7 +47,7 @@ public class BrowseProjectUtility {
     public boolean validateProjectName() {
         wait =  new WebDriverWait(WebDriverRunner.getWebDriver(),5);
         wait.until(ExpectedConditions.visibilityOf(browseProjectsPage.getMTPprojectTitle()));
-        return browseProjectsPage.getProjectKey().isDisplayed() && browseProjectsPage.getMTPprojectTitle().text().equals("Main Testing Project");
+        return browseProjectsPage.getProjectKey().isDisplayed() && browseProjectsPage.getProjectKey().text().equals("MTP");
     }
 
     public boolean validateProjectName(String projectName) {

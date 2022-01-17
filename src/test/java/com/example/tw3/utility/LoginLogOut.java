@@ -81,6 +81,8 @@ public interface LoginLogOut {
             loginPage.getPasswordField().sendKeys(System.getenv("password"));
         }
         loginPage.getLoginForm().submit();
+        wait.until(ExpectedConditions.visibilityOf(dashBoardPage.getProfileBtn()));
+
     }
 
     static void loginSecondary(){

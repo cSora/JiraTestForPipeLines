@@ -100,10 +100,11 @@ public interface LoginLogOut {
     }
 
     static void closeDriver(){
-        WebDriverRunner.getWebDriver().close();
+        WebDriverRunner.getWebDriver().quit();
     }
 
     static void logout() {
+        setDriver();
         WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);
         dashBoardPage.getProfileBtn().click();
         wait.until(ExpectedConditions.visibilityOf(profileOptionsDropDown.getLogoutOption()));

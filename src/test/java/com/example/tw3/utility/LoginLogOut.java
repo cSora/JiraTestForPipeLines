@@ -24,6 +24,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -36,15 +39,19 @@ public interface LoginLogOut {
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
 
     static void setDriver(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
         String gridUrl = "https://" + System.getProperty("gridUser") + ":"
                 + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
         try {
             // Here we'll write our data into a file called
             // output.txt, this is the output.
-            File file = new File("output.txt");
+            File file = new File("properties.txt");
             // We'll write the string below into the file
-            String data = System.getProperty("browser") + "\n " +
-                   gridUrl ;
+            String data = System.getProperty("browser") + "---->browser\n " +
+                   gridUrl + "---->grid url\n " +
+                    System.getProperty("baseUrl") +"---->base url\n" +
+                    dtf.format(now)+"---->Current time";
 
             // To write a file called the writeStringToFile
             // method which require you to pass the file and
@@ -58,14 +65,7 @@ public interface LoginLogOut {
         Configuration.browser = System.getProperty("browser");
         Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
         Configuration.remote = gridUrl;
-//        MutableCapabilities browserType = System.getProperty("browser") == "chrome" ? new ChromeOptions() : new FirefoxOptions();
-//        String gridUrl = "https://" + System.getProperty("gridUser") + ":" + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
-//        try {
-//            WebDriver driver = new RemoteWebDriver(new URL(gridUrl), browserType);
-//            WebDriverRunner.setWebDriver(driver);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
 

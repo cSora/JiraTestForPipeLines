@@ -48,6 +48,7 @@ pipeline {
                                                         }
                                                         always {
                                                             archiveArtifacts artifacts: '**/firefoxProperties.txt'
+
                                                         }
                                                     }
                 }

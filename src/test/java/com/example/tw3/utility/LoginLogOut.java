@@ -39,32 +39,30 @@ public interface LoginLogOut {
     ProfileOptionsDropDown profileOptionsDropDown = new ProfileOptionsDropDown();
 
     static void setDriver(){
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String gridUrl = "https://" + System.getProperty("gridUser") + ":"
                 + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+
+        Configuration.baseUrl = System.getProperty("baseUrl");
+        Configuration.browser = System.getProperty("browser");
+        Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
+        Configuration.remote = gridUrl;
+
         try {
-            // Here we'll write our data into a file called
-            // output.txt, this is the output.
-            File file = new File("properties.txt");
-            // We'll write the string below into the file
+            File file = Objects.equals(Configuration.browser, "firefox") ?  new File("firefoxProperties.txt")
+                                                                            : new File("chromeProperties.txt");
             String data = System.getProperty("browser") + "---->browser\n " +
                    gridUrl + "---->grid url\n " +
                     System.getProperty("baseUrl") +"---->base url\n" +
                     dtf.format(now)+"---->Current time";
 
-            // To write a file called the writeStringToFile
-            // method which require you to pass the file and
-            // the data to be written.
             FileUtils.writeStringToFile(file, data, "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Configuration.baseUrl = System.getProperty("baseUrl");
-//        Configuration.browserCapabilities = Objects.equals(System.getProperty("browser"), "chrome") ? new ChromeOptions() : new FirefoxOptions();
-        Configuration.browser = System.getProperty("browser");
-        Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
-        Configuration.remote = gridUrl;
+
 
     }
 

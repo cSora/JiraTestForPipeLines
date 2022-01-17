@@ -26,11 +26,6 @@ pipeline {
                        }
 
                     }
-                    post {
-                            always {
-                                }
-                            }
-                }
                 stage('Firefox tests'){
                     steps {
                         echo 'Firefox tests'

@@ -40,6 +40,7 @@ public class CreateIssueUtility {
     }
 
     public void fillForm(Project project, IssueType issueType, String summary) {
+        wait.until(ExpectedConditions.visibilityOf(createIssueScreen.getCancelBtn()));
         fillField(createIssueScreen.getProjectField(), project.getFullNameWithKey());
         fillField(createIssueScreen.getIssueTypeField(), issueType.name());
         fillField(createIssueScreen.getSummaryField(), summary);

@@ -24,43 +24,43 @@ public class SmokeTest {
         LoginLogOut.closeDriver();
     }
 
-//    @Test
-//    public void logout() {
-//        logout.logout();
-//        logout.login();
-//        //logout.multiTabLogout();
+    @Test
+    public void logout() {
+        logout.logout();
+        logout.login();
+        //logout.multiTabLogout();
+
+    }
+
+    @Test
+    public void login(){
+        logout.logout();
+        login.login();
+    }
+
+
+//     NOTE: short Smoketests for testing.
 //
-//    }
 //
-//    @Test
-//    public void login(){
-//        logout.logout();
-//        login.login();
-//    }
+//     uncomment below to run full smoke testing.
 
-
-    // NOTE: short Smoketests for testing.
-    //
-
-    // uncomment below to run full smoke testing.
-
-//    @Test
-//    public void browseIssue() {
-//        browseIssue.preSetIssueTest();
-//    }
+    @Test
+    public void browseIssue() {
+        browseIssue.preSetIssueTest();
+    }
 
     @Test
     public void browseProject() {
         browseProject.browseProject();
     }
-//
-//    @Test
-//    public void createIssue(){
-//        createIssue.createIssue();
-//    }
-//
-//    @Test
-//    public void editIssue(){
-//        editIssue.editTest();
-//    }
+
+    @Test
+    public void createIssue(){
+        createIssue.createIssue();
+    }
+
+    @Test
+    public void editIssue(){
+        editIssue.editTest();
+    }
 }

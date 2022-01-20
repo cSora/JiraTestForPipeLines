@@ -46,7 +46,7 @@ public class BrowseProjectUtility {
 
     public boolean validateProjectName() {
         wait =  new WebDriverWait(WebDriverRunner.getWebDriver(),5);
-        wait.until(ExpectedConditions.presenceOfElementLocated(browseProjectsPage.getByMTPprojectTitle()));
+        wait.until(ExpectedConditions.visibilityOf(browseProjectsPage.getProjectKey()));
         return browseProjectsPage.getProjectKey().isDisplayed() && browseProjectsPage.getProjectKey().text().equals("MTP");
     }
 

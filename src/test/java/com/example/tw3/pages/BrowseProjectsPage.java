@@ -1,6 +1,7 @@
 package com.example.tw3.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -11,6 +12,7 @@ public class BrowseProjectsPage {
     SelenideElement sideBarToggle = $x("//button[@original-title = 'Expand sidebar ( [ )']");
     SelenideElement projectTitle;
     SelenideElement MTPprojectTitle = $x("//img[@alt='Main Testing Project']");
+    By byMTPprojectTitle = By.xpath("//img[@alt='Main Testing Project']");
     SelenideElement projectKey = $x("//dd[contains(text(), 'MTP')]");
     String projectKeyXpath = "//dd[contains(text(), 'MTP')]";
 
@@ -52,5 +54,9 @@ public class BrowseProjectsPage {
 
     public SelenideElement getSideBarToggle() {
         return sideBarToggle;
+    }
+
+    public By getByMTPprojectTitle() {
+        return byMTPprojectTitle;
     }
 }

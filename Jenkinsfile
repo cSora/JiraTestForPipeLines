@@ -27,10 +27,11 @@ pipeline {
                        }
                     }
                     post {
-                                    success {
-                                        junit 'target/surefire-reports/**/*.xml'
-                                    }
+//                                     success {
+//                                         // jar exe maybe upload here if it is important
+//                                     }
                                     always {
+                                        junit 'target/surefire-reports/**/*.xml'
                                         archiveArtifacts artifacts: '**/chromeProperties.txt'
                                     }
                                 }
@@ -43,10 +44,9 @@ pipeline {
                         }
                     }
                     post {
-                                                        success {
-                                                            junit 'target/surefire-reports/**/*.xml'
-                                                        }
+
                                                         always {
+                                                        junit 'target/surefire-reports/**/*.xml'
                                                             archiveArtifacts artifacts: '**/firefoxProperties.txt'
 
                                                         }

@@ -91,7 +91,7 @@ public interface LoginLogOut {
     }
 
     static void closeDriver(){
-        WebDriverRunner.getWebDriver().quit();
+        WebDriverRunner.getWebDriver().close();
     }
 
     static void logout() {

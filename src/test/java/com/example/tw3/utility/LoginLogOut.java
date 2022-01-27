@@ -30,8 +30,7 @@ public interface LoginLogOut {
     static void setDriver(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        String gridUrl = "https://" + System.getProperty("gridUser") + ":"
-                + System.getProperty("gridPassword") + "@seleniumhub.codecool.metastage.net/wd/hub";
+        String gridUrl = "http://localhost:4444";
 
         Configuration.baseUrl = System.getProperty("baseUrl");
         Configuration.browser = System.getProperty("browser");

@@ -38,6 +38,7 @@ public interface LoginLogOut {
         Configuration.timeout = Long.parseLong(System.getProperty("timeout"));
         Configuration.remote = gridUrl;
 
+
         try {
             File file = Objects.equals(Configuration.browser, "firefox") ?  new File("firefoxProperties.txt")
                                                                             : new File("chromeProperties.txt");

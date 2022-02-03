@@ -57,6 +57,7 @@ public interface LoginLogOut {
 
 
     static void loginPrimary(){
+
         setDriver();
         open(loginPage.url);
         WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), 5);

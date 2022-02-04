@@ -13,6 +13,7 @@ public class CreateIssueScreen {
     private final SelenideElement issueLink = $x("//a[@class='issue-created-key issue-link']");
     private final SelenideElement createIssueHeader = $x("//h2[contains(text(),'Create Issue')]");
 
+
     public SelenideElement getScreen() {
         return screen;
     }
